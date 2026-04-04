@@ -293,6 +293,16 @@
         <!-- Misc Internal Dependencies -->
         <!-- Source: https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.21.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${org-json.version}</version>
+        </dependency>
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
