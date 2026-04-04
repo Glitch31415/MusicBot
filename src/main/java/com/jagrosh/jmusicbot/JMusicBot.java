@@ -77,6 +77,7 @@ public class JMusicBot
 	static boolean ondemand = true;
     static HttpClient client = HttpClient.newHttpClient();
     static Guild guild = null;
+    static JDA jda = null;
     public final static Logger LOG = LoggerFactory.getLogger(JMusicBot.class);
     public final static Permission[] RECOMMENDED_PERMS = {
             Permission.VIEW_CHANNEL,
@@ -184,7 +185,7 @@ public class JMusicBot
         // attempt to log in and start
         try
         {
-            JDA jda = DiscordService.createJDA(config, bot, waiter, client, userInteraction);
+            jda = DiscordService.createJDA(config, bot, waiter, client, userInteraction);
             bot.setJDA(jda);
         }
         catch(IllegalArgumentException ex)
