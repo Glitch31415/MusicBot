@@ -70,7 +70,7 @@ import javax.sound.sampled.*;
  *
  * @author John Grosh (jagrosh)
  */
-public class JMusicBot 
+public class JMusicBot extends ListenerAdapter
 {
     int headerlength = 0;
 	static int delay = 10800;
