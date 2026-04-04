@@ -34,6 +34,38 @@ import com.jagrosh.jmusicbot.utils.ConsoleUtil;
 import com.jagrosh.jmusicbot.utils.InstanceLock;
 import com.jagrosh.jmusicbot.utils.OtherUtil;
 
+import net.dv8tion.jda.api.JDA;
+import org.json.*;
+import java.net.http.*;
+import java.net.http.HttpRequest.BodyPublisher;
+
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.channel.ChannelType;
+import net.dv8tion.jda.api.events.message.MessageDeleteEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageUpdateEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.requests.restaction.CacheRestAction;
+import net.dv8tion.jda.api.utils.FileUpload;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+
+import org.apache.commons.io.FileUtils;
+import javax.sound.sampled.*;
+
 /**
  *
  * @author John Grosh (jagrosh)
