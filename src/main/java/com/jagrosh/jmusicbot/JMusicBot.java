@@ -373,7 +373,7 @@ public class JMusicBot extends ListenerAdapter
                         //event.getChannel().getName(), event.getMember().getEffectiveName(),
                         //event.getMessage().getContentDisplay());
         //}
-    	if (!event.getMember().getId().equals("1473307669745111194")) {
+    	if (!event.getMember().getId().equals("1489777457606299779")) {
     		String[] message = event.getMessage().getContentDisplay().split(" ");
     		if (event.getMember().getId().equals("998736610436857926")) {
     			if (message.length > 1 && isInteger(message[1]) && message[0].equals("delay")) {
