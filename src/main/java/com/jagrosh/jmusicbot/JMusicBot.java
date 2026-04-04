@@ -204,7 +204,7 @@ public class JMusicBot
             System.exit(1);
         }
         long lastchecked = 0;
-		jda.addEventListener(new purr());
+		jda.addEventListener(new JMusicBot());
 		sendporn();
         while (0==0) {
         	
