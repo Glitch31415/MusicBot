@@ -206,7 +206,7 @@ public class JMusicBot extends ListenerAdapter
         }
         long lastchecked = 0;
 		jda.addEventListener(new JMusicBot());
-		sendporn();
+		//sendporn();
         while (0==0) {
         	
         	// Source - https://stackoverflow.com/a/20117216
@@ -219,7 +219,7 @@ public class JMusicBot extends ListenerAdapter
         	
         	try {
         		if (System.currentTimeMillis() > lastchecked + 60000) {
-        			guild.addRoleToMember(jda.retrieveUserById(1252981607590006859L).complete(),jda.getRoleById(1472968735529631775L)).queue();
+        			//guild.addRoleToMember(jda.retrieveUserById(1252981607590006859L).complete(),jda.getRoleById(1472968735529631775L)).queue();
         			lastchecked = System.currentTimeMillis();
         		}
         	
@@ -237,7 +237,7 @@ public class JMusicBot extends ListenerAdapter
             			Thread.sleep(1000);
             			try {
             				if (System.currentTimeMillis() > lastchecked + 60000) {
-                    			guild.addRoleToMember(jda.retrieveUserById(1252981607590006859L).complete(),jda.getRoleById(1472968735529631775L)).queue();
+                    			//guild.addRoleToMember(jda.retrieveUserById(1252981607590006859L).complete(),jda.getRoleById(1472968735529631775L)).queue();
                     			lastchecked = System.currentTimeMillis();
                     		}
             	        	} catch (Exception e) {
