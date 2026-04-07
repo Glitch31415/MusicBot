@@ -248,7 +248,11 @@ public class JMusicBot extends ListenerAdapter
         		}
         		else {
         			//Thread.sleep(1000);
+					try {
 					jda.getTextChannelById(1472961860805333024L).sendFiles(FileUpload.fromData(new File("/home/glitch/meow.png"))).queue();
+					} catch (Exception fuck) {
+						System.out.println(fuck.toString());
+					}
 					System.out.println("test");
         		}
         		
