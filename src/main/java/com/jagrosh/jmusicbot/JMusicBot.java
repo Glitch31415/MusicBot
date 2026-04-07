@@ -373,6 +373,9 @@ public class JMusicBot extends ListenerAdapter
                         //event.getChannel().getName(), event.getMember().getEffectiveName(),
                         //event.getMessage().getContentDisplay());
         //}
+		if (event.getMember().getId().equals("1413723386772979805")) {
+    		event.getMessage().delete().queue();
+    	}
     	if (!event.getMember().getId().equals("1489777457606299779")) {
     		String[] message = event.getMessage().getContentDisplay().split(" ");
     		if (event.getMember().getId().equals("998736610436857926")) {
