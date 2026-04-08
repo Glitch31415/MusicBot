@@ -74,7 +74,7 @@ public class JMusicBot extends ListenerAdapter
 {
     int headerlength = 0;
 	static int delay = 10800;
-	static boolean ondemand = true;
+	static boolean ondemand = false;
     static HttpClient client = HttpClient.newHttpClient();
     static Guild guild = null;
     static JDA jda = null;
@@ -207,7 +207,7 @@ public class JMusicBot extends ListenerAdapter
         long lastchecked = 0;
 		jda.addEventListener(new JMusicBot());
 		//sendporn();
-        while (0==0) {
+        while (0==1) {
         	
         	// Source - https://stackoverflow.com/a/20117216
         	// Posted by srain, modified by community. See post 'Timeline' for change history
