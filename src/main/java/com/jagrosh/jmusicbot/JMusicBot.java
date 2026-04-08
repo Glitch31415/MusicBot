@@ -78,7 +78,6 @@ public class JMusicBot extends ListenerAdapter
     static HttpClient client = HttpClient.newHttpClient();
     static Guild guild = null;
     static JDA jda = null;
-	static int imgcounter = 0;
     public final static Logger LOG = LoggerFactory.getLogger(JMusicBot.class);
     public final static Permission[] RECOMMENDED_PERMS = {
             Permission.VIEW_CHANNEL,
@@ -248,24 +247,7 @@ public class JMusicBot extends ListenerAdapter
             		}
         		}
         		else {
-        			//Thread.sleep(1000);
-					try {
-						// Source - https://stackoverflow.com/a/39629699
-// Posted by passion, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-04-07, License - CC BY-SA 3.0
-
-File[] filesp = new File("/home/glitch/hlcoop-sfx/porn/").listFiles();
-File filep = filesp[imgcounter];
-
-					jda.getTextChannelById(1472961860805333024L).sendFiles(FileUpload.fromData(filep)).queue();
-					} catch (Exception fuck) {
-						if (!fuck.toString().contains("open files")) {
-							imgcounter = 0;
-						}
-						System.out.println(fuck.toString());
-					}
-					//System.out.println(imgcounter);
-					imgcounter = imgcounter + 1;
+        			Thread.sleep(1000);
         		}
         		
 				
@@ -313,19 +295,19 @@ File filep = filesp[imgcounter];
     	InputStream in;
 		in = new URL(thingurl).openStream();
 		Files.copy(in, Paths.get("/home/glitch/hlcoop-sfx/porn/" + filename), StandardCopyOption.REPLACE_EXISTING);
-		if (new File("/home/glitch/hlcoop-sfx/" + filename).length() < 10000000) {
+		if (new File("/home/glitch/hlcoop-sfx/porn/" + filename).length() < 10000000) {
 			sent = true;
 			guild = jda.getTextChannelById(1472961860805333024L).getGuild();
 			jda.getTextChannelById(1472961860805333024L).sendFiles(FileUpload.fromData(new File("/home/glitch/hlcoop-sfx/porn/" + filename))).queue();
 		}
 		else {
 			System.out.println("too big");
-			new File("/home/glitch/hlcoop-sfx/" + filename).delete();
+			new File("/home/glitch/hlcoop-sfx/porn/" + filename).delete();
 		}
-		//new File("/home/glitch/hlcoop-sfx/" + filename).delete();
+		new File("/home/glitch/hlcoop-sfx/porn/" + filename).delete();
     	} catch (Exception e) {
 			System.out.println(e.toString());
-			//new File("/home/glitch/hlcoop-sfx/" + filename).delete();
+			new File("/home/glitch/hlcoop-sfx/porn/" + filename).delete();
 			sent = false;
 		}
     	}
@@ -393,10 +375,6 @@ File filep = filesp[imgcounter];
                         //event.getChannel().getName(), event.getMember().getEffectiveName(),
                         //event.getMessage().getContentDisplay());
         //}
-		if (event.getMember().getId().equals("1413723386772979805")) {
-    		event.getMessage().delete().queue();
-			System.out.println("test2");
-    	}
     	if (!event.getMember().getId().equals("1489777457606299779")) {
     		String[] message = event.getMessage().getContentDisplay().split(" ");
     		if (event.getMember().getId().equals("998736610436857926")) {
@@ -425,7 +403,7 @@ File filep = filesp[imgcounter];
     			
     			while (attachmentcounter < event.getMessage().getAttachments().size()) {
     				System.out.println(attachmentcounter);
-    				//sendporn();
+    				sendporn();
     				attachmentcounter = attachmentcounter + 1;
     			}
     		}
@@ -610,13 +588,13 @@ File filep = filesp[imgcounter];
     public void onMessageDelete(MessageDeleteEvent event)
     {
     	if (event.getChannel().getIdLong() == 1472961860805333024L && ondemand == true) {
-    		//sendporn();
+    		sendporn();
     	}
     }
     public void onMessageUpdate(MessageUpdateEvent event)
     {
     	if (event.getChannel().getIdLong() == 1472961860805333024L && ondemand == true) {
-    		//sendporn();
+    		sendporn();
     	}
     }
 
