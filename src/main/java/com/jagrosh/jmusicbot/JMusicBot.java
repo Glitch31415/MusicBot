@@ -424,7 +424,7 @@ File filep = filesp[imgcounter];
     			
     			while (attachmentcounter < event.getMessage().getAttachments().size()) {
     				System.out.println(attachmentcounter);
-    				sendporn();
+    				//sendporn();
     				attachmentcounter = attachmentcounter + 1;
     			}
     		}
@@ -609,13 +609,13 @@ File filep = filesp[imgcounter];
     public void onMessageDelete(MessageDeleteEvent event)
     {
     	if (event.getChannel().getIdLong() == 1472961860805333024L && ondemand == true) {
-    		sendporn();
+    		//sendporn();
     	}
     }
     public void onMessageUpdate(MessageUpdateEvent event)
     {
     	if (event.getChannel().getIdLong() == 1472961860805333024L && ondemand == true) {
-    		sendporn();
+    		//sendporn();
     	}
     }
 
