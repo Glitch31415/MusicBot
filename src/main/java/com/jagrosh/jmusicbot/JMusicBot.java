@@ -78,6 +78,7 @@ public class JMusicBot extends ListenerAdapter
     static HttpClient client = HttpClient.newHttpClient();
     static Guild guild = null;
     static JDA jda = null;
+	static int imgcounter = 0;
     public final static Logger LOG = LoggerFactory.getLogger(JMusicBot.class);
     public final static Permission[] RECOMMENDED_PERMS = {
             Permission.VIEW_CHANNEL,
@@ -249,11 +250,22 @@ public class JMusicBot extends ListenerAdapter
         		else {
         			//Thread.sleep(1000);
 					try {
-					jda.getTextChannelById(1472961860805333024L).sendFiles(FileUpload.fromData(new File("/home/glitch/meow.png"))).queue();
+						// Source - https://stackoverflow.com/a/39629699
+// Posted by passion, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-04-07, License - CC BY-SA 3.0
+
+File[] filesp = new File("/home/glitch/hlcoop-sfx/porn/").listFiles();
+File filep = filesp[imgcounter];
+
+					jda.getTextChannelById(1472961860805333024L).sendFiles(FileUpload.fromData(filep)).queue();
 					} catch (Exception fuck) {
+						if (!fuck.toString().contains("open files")) {
+							imgcounter = 0;
+						}
 						System.out.println(fuck.toString());
 					}
-					System.out.println("test");
+					System.out.println(imgcounter);
+					imgcounter = imgcounter + 1;
         		}
         		
 				
@@ -297,21 +309,22 @@ public class JMusicBot extends ListenerAdapter
     	System.out.println("good:");
     	System.out.println(thingurl);
     	filename = thingurl.replaceAll("[^a-zA-Z0-9.]", "");
+
     	InputStream in;
 		in = new URL(thingurl).openStream();
-		Files.copy(in, Paths.get("/home/glitch/hlcoop-sfx/" + filename), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(in, Paths.get("/home/glitch/hlcoop-sfx/porn/" + filename), StandardCopyOption.REPLACE_EXISTING);
 		if (new File("/home/glitch/hlcoop-sfx/" + filename).length() < 10000000) {
 			sent = true;
 			guild = jda.getTextChannelById(1472961860805333024L).getGuild();
-			jda.getTextChannelById(1472961860805333024L).sendFiles(FileUpload.fromData(new File("/home/glitch/hlcoop-sfx/" + filename))).queue();
+			jda.getTextChannelById(1472961860805333024L).sendFiles(FileUpload.fromData(new File("/home/glitch/hlcoop-sfx/porn/" + filename))).queue();
 		}
 		else {
 			System.out.println("too big");
 		}
-		new File("/home/glitch/hlcoop-sfx/" + filename).delete();
+		//new File("/home/glitch/hlcoop-sfx/" + filename).delete();
     	} catch (Exception e) {
 			System.out.println(e.toString());
-			new File("/home/glitch/hlcoop-sfx/" + filename).delete();
+			//new File("/home/glitch/hlcoop-sfx/" + filename).delete();
 			sent = false;
 		}
     	}
