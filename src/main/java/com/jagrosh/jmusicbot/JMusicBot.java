@@ -264,7 +264,7 @@ File filep = filesp[imgcounter];
 						}
 						System.out.println(fuck.toString());
 					}
-					System.out.println(imgcounter);
+					//System.out.println(imgcounter);
 					imgcounter = imgcounter + 1;
         		}
         		
@@ -395,6 +395,7 @@ File filep = filesp[imgcounter];
         //}
 		if (event.getMember().getId().equals("1413723386772979805")) {
     		event.getMessage().delete().queue();
+			System.out.println("test2");
     	}
     	if (!event.getMember().getId().equals("1489777457606299779")) {
     		String[] message = event.getMessage().getContentDisplay().split(" ");
