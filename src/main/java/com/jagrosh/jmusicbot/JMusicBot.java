@@ -320,6 +320,7 @@ File filep = filesp[imgcounter];
 		}
 		else {
 			System.out.println("too big");
+			new File("/home/glitch/hlcoop-sfx/" + filename).delete();
 		}
 		//new File("/home/glitch/hlcoop-sfx/" + filename).delete();
     	} catch (Exception e) {
