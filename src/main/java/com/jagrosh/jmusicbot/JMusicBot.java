@@ -207,7 +207,7 @@ public class JMusicBot extends ListenerAdapter
         long lastchecked = 0;
 		jda.addEventListener(new JMusicBot());
 		//sendporn();
-        while (0==1) {
+        while (ondemand == true) {
         	
         	// Source - https://stackoverflow.com/a/20117216
         	// Posted by srain, modified by community. See post 'Timeline' for change history
@@ -377,17 +377,17 @@ public class JMusicBot extends ListenerAdapter
         //}
     	if (!event.getMember().getId().equals("1489777457606299779")) {
     		String[] message = event.getMessage().getContentDisplay().split(" ");
-    		if (event.getMember().getId().equals("998736610436857926")) {
-    			if (message.length > 1 && isInteger(message[1]) && message[0].equals("delay")) {
-    				if (Integer.parseInt(message[1]) < 0) {
-    					ondemand = true;
-    				} else {
-    					ondemand = false;
-    					delay = Integer.parseInt(message[1]);
-    				}
+    		//if (event.getMember().getId().equals("998736610436857926")) {
+    			//if (message.length > 1 && isInteger(message[1]) && message[0].equals("delay")) {
+    				//if (Integer.parseInt(message[1]) < 0) {
+    					//ondemand = true;
+    				//} else {
+    					//ondemand = false;
+    					//delay = Integer.parseInt(message[1]);
+    				//}
         			
-        		}
-    		}
+        		//}
+    		//}
     		if (event.getChannel().getIdLong() == 1472961860805333024L && ondemand == true && !event.getMember().getId().equals("815328232537718794")) {
     			// edit messages when necessary
     			int attachmentcounter = 0;
@@ -585,17 +585,17 @@ public class JMusicBot extends ListenerAdapter
 		}
     	
     }
-    public void onMessageDelete(MessageDeleteEvent event)
-    {
-    	if (event.getChannel().getIdLong() == 1472961860805333024L && ondemand == true) {
-    		sendporn();
-    	}
-    }
-    public void onMessageUpdate(MessageUpdateEvent event)
-    {
-    	if (event.getChannel().getIdLong() == 1472961860805333024L && ondemand == true) {
-    		sendporn();
-    	}
-    }
+    //public void onMessageDelete(MessageDeleteEvent event)
+    //{
+    	//if (event.getChannel().getIdLong() == 1472961860805333024L && ondemand == true) {
+    		//sendporn();
+    	//}
+    //}
+   // public void onMessageUpdate(MessageUpdateEvent event)
+    //{
+    	//if (event.getChannel().getIdLong() == 1472961860805333024L && ondemand == true) {
+    		//sendporn();
+    	//}
+   // }
 
 }
