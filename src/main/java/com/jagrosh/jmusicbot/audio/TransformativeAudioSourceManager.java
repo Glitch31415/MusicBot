@@ -68,6 +68,13 @@ public class TransformativeAudioSourceManager extends YoutubeAudioSourceManager
         try
         {
             String url = ar.identifier.replaceAll(regex, replacement);
+
+
+
+            System.out.println(url);
+
+
+            
             Document doc = Jsoup.connect(url).get();
             String value = doc.selectFirst(selector).ownText();
             String formattedValue = String.format(format, value);
