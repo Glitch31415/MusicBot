@@ -415,8 +415,8 @@ public class JMusicBot extends ListenerAdapter
         		boolean volume = message[0].equals(message[0].toUpperCase());
         		if (message.length > 1 && isInteger(message[1])) {
         			pitch = Integer.parseInt(message[1]);
-        			if (pitch > 250) {
-        				pitch = 250;
+        			if (pitch > 255) {
+        				pitch = 255;
         			}
         			if (pitch < 25) {
         				pitch = 25;
