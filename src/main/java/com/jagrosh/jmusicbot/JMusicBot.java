@@ -425,6 +425,7 @@ public class JMusicBot extends ListenerAdapter
         		}
 				if (message[0].toLowerCase().charAt(0) == 'u' && message[0].toLowerCase().charAt(0) == 'n') {
 					pitch = -pitch;
+					message[0] = message[0].substring(2);
 				}
         		if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").exists() && !new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").exists()) {
     				try {
