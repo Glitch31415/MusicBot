@@ -514,6 +514,18 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
         				//} catch (Exception e) {
         				    //System.err.println(e.getMessage());
         				//}
+						if (pitch < 0) {
+							if (volume == true) {
+								Process process = Runtime.getRuntime().exec("sox /home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + "-volume.wav /home/glitch/hlcoop-sfx/un" + message[0].toLowerCase() + "-volume.wav reverse");
+								process.waitFor();
+							}
+							else {
+								Process process = Runtime.getRuntime().exec("sox /home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav /home/glitch/hlcoop-sfx/un" + message[0].toLowerCase() + ".wav reverse");
+								process.waitFor();
+							}
+							message[0] = "un" + message[0];
+							pitch = -pitch;
+						}
         				File sfxfile = null;
         				if (volume == true) {
         					sfxfile = new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + "-volume.wav");
