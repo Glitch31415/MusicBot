@@ -454,6 +454,9 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
 						ddone = true;
 					}
         		}
+				else {
+					ddone = true;
+				}
 				}
         		
         		if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").exists()) {
