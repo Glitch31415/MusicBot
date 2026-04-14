@@ -446,12 +446,11 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
     					} catch (Exception e2) {
     						System.out.println(message[0]);
     						System.out.println(e2.toString());
-    						
+    						ddone = true;
     					}
     					 
     				} catch (Exception e) {
 						System.out.println(e.toString());
-						System.out.println("this ran");
 						ddone = true;
 					}
         		}
