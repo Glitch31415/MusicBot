@@ -413,6 +413,7 @@ public class JMusicBot extends ListenerAdapter
     		//if ((message.length == 1) || (message.length == 2 && isInteger(message[1]))) {
     			int pitch = 100;
         		boolean volume = message[0].equals(message[0].toUpperCase());
+				
         		if (message.length > 1 && isInteger(message[1])) {
         			pitch = Integer.parseInt(message[1]);
         			if (pitch > 255) {
@@ -422,6 +423,9 @@ public class JMusicBot extends ListenerAdapter
         				pitch = 25;
         			}
         		}
+				if (message[0].toLowerCase().charAt(0) == 'u' && message[0].toLowerCase().charAt(0) == 'n') {
+					pitch = -pitch;
+				}
         		if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").exists() && !new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").exists()) {
     				try {
     					InputStream in;
