@@ -423,19 +423,26 @@ public class JMusicBot extends ListenerAdapter
         				pitch = 25;
         			}
         		}
-				if (message[0].toLowerCase().charAt(0) == 'u' && message[0].toLowerCase().charAt(0) == 'n') {
-					pitch = -pitch;
-					message[0] = message[0].substring(2);
-				}
-        		if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").exists() && !new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").exists()) {
+				boolean ddone = false;
+				while (ddone == false) {
+if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").exists() && !new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").exists()) {
     				try {
     					InputStream in;
 						in = new URL("http://w00tguy.ddns.net/sound/csound/" + message[0].toLowerCase().replace("?", "").replace(".", "") + ".wav").openStream();
 						Files.copy(in, Paths.get("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav"), StandardCopyOption.REPLACE_EXISTING);
+						ddone = true;
     				} catch (FileNotFoundException e) {
     					//System.out.println(message[0].toLowerCase());
     					try {
-    					 new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").createNewFile();
+							if (message[0].toLowerCase().charAt(0) == 'u' && message[0].toLowerCase().charAt(0) == 'n') {
+					pitch = -pitch;
+					message[0] = message[0].substring(2);
+				}
+				else {
+					new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").createNewFile();
+					ddone = true;
+				}
+    					 
     					} catch (Exception e2) {
     						System.out.println(message[0]);
     						System.out.println(e2.toString());
@@ -444,6 +451,8 @@ public class JMusicBot extends ListenerAdapter
     					 
     				}
         		}
+				}
+        		
         		if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").exists()) {
         			if (volume == true) {
         				//System.out.println("test");
