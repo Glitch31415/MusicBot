@@ -434,7 +434,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
     				} catch (FileNotFoundException e) {
     					//System.out.println(message[0].toLowerCase());
     					try {
-							if (message[0].toLowerCase().charAt(0) == 'u' && message[0].toLowerCase().charAt(0) == 'n') {
+							if (message[0].toLowerCase().charAt(0) == 'u' && message[0].toLowerCase().charAt(1) == 'n') {
 					pitch = -pitch;
 					message[0] = message[0].substring(2);
 				}
