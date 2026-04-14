@@ -431,7 +431,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
 						in = new URL("http://w00tguy.ddns.net/sound/csound/" + message[0].toLowerCase().replace("?", "").replace(".", "") + ".wav").openStream();
 						Files.copy(in, Paths.get("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav"), StandardCopyOption.REPLACE_EXISTING);
 						ddone = true;
-    				} catch (FileNotFoundException e) {
+    				} catch (FileNotFoundException | IOException e) {
     					//System.out.println(message[0].toLowerCase());
     					try {
 							if (message[0].toLowerCase().charAt(0) == 'u' && message[0].toLowerCase().charAt(1) == 'n') {
