@@ -449,7 +449,10 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
     						
     					}
     					 
-    				}
+    				} catch (Exception e) {
+						System.out.println(e.toString());
+						ddone = true;
+					}
         		}
 				}
         		
