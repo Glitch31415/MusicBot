@@ -117,7 +117,7 @@ public class JMusicBot extends ListenerAdapter
     private static void startBot()
     {
 		try {
-		Process translateprocess = Runtime.getRuntime().exec("node ./translate.js");
+		Process translateprocess = Runtime.getRuntime().exec("node translate.js");
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
