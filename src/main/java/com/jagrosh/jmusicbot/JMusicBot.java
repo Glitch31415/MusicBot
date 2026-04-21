@@ -711,7 +711,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
                             var data = objectMapper.readValue(body, new TypeReference<Object[]>(){});
                             //Object[] firstArray = (Object[]) ((java.util.List<?>) data[0]).get(0);
                             //return firstArray[0].toString();
-							return data[0].get(0).toString();
+							return data[0].toString();
                         } catch (Exception e) {
                             e.printStackTrace();
                             return null;
