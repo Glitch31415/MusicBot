@@ -726,7 +726,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
             return; // Only handle guild messages
         }
 
-        String emojiCode = event.getReaction().getEmoji().getFormatted();
+        String emojiCode = event.getReaction().getEmoji().getAsReactionCode();
 
         String targetLanguage = getLang(emojiCode);
         if (targetLanguage == null) {
