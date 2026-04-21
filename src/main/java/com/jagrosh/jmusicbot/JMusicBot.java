@@ -114,9 +114,13 @@ public class JMusicBot extends ListenerAdapter
         startBot();
     }
     
-    private static void startBot() throws IOException
+    private static void startBot()
     {
+		try {
 		Process translateprocess = Runtime.getRuntime().exec("node ./translate.js");
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 		
         // create user interaction handler for startup
         UserInteraction userInteraction = new Prompt("JMusicBot");
