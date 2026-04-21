@@ -755,7 +755,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
                             .addField("Translation/" + translationLabel, translation, false);
 
                     event.getChannel().sendMessageEmbeds(embed.build()).queue();
-                    reaction.removeReaction(event.getUser()).queue();
+                    event.getReaction().removeReaction(event.getUser()).queue();
                 }).exceptionally(ex -> {
                     System.err.println("Error translating labels: " + ex);
                     return null;
