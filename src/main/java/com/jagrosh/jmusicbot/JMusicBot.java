@@ -135,7 +135,7 @@ public class JMusicBot extends ListenerAdapter
     //);
 	private static final Map<String, String> TARGET_LANGUAGES = Map.of(
             "en", "🇺🇸",
-            "ru", ":flag_ru:",
+            "ru", "🇷🇺",
             "es", "🇦🇷"
     );
 
