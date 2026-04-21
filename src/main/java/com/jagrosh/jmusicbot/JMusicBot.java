@@ -128,10 +128,15 @@ public class JMusicBot extends ListenerAdapter
             GatewayIntent.GUILD_VOICE_STATES,
             GatewayIntent.MESSAGE_CONTENT
     };
-    private static final Map<String, String> TARGET_LANGUAGES = Map.of(
-            "en", "%F0%9F%87%BA%F0%9F%87%B8",
-            "ru", "%F0%9F%87%B7%F0%9F%87%BA",
-            "es", "%F0%9F%87%A6%F0%9F%87%B7"
+    //private static final Map<String, String> TARGET_LANGUAGES = Map.of(
+            //"en", "%F0%9F%87%BA%F0%9F%87%B8",
+            //"ru", "%F0%9F%87%B7%F0%9F%87%BA",
+            //"es", "%F0%9F%87%A6%F0%9F%87%B7"
+    //);
+	private static final Map<String, String> TARGET_LANGUAGES = Map.of(
+            "en", "🇺🇸️",
+            "ru", "🇷🇺️",
+            "es", "🇦🇷"
     );
 
     private static final Map<String, String> LANGUAGE_NAMES = Map.of(
