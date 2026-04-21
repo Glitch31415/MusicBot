@@ -66,35 +66,6 @@ import javax.sound.sampled.AudioSystem;
 import org.apache.commons.io.FileUtils;
 import javax.sound.sampled.*;
 
-import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.MessageReaction;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.entities.emoji.Emoji;
-import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.utils.cache.CacheFlag;
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.entities.Activity;
-
-import javax.security.auth.login.LoginException;
-import java.awt.Color;
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.URI;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.concurrent.CompletableFuture;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
-
 /**
  *
  * @author John Grosh (jagrosh)
@@ -128,26 +99,7 @@ public class JMusicBot extends ListenerAdapter
             GatewayIntent.GUILD_VOICE_STATES,
             GatewayIntent.MESSAGE_CONTENT
     };
-    //private static final Map<String, String> TARGET_LANGUAGES = Map.of(
-            //"en", "%F0%9F%87%BA%F0%9F%87%B8",
-            //"ru", "%F0%9F%87%B7%F0%9F%87%BA",
-            //"es", "%F0%9F%87%A6%F0%9F%87%B7"
-    //);
-	private static final Map<String, String> TARGET_LANGUAGES = Map.of(
-            "en", "🇺🇸",
-            "ru", "🇷🇺",
-            "es", "🇦🇷"
-    );
-
-    private static final Map<String, String> LANGUAGE_NAMES = Map.of(
-            "en", "English",
-            "ru", "Russian",
-            "es", "Spanish"
-    );
-
-    private final HttpClient httpClient = HttpClient.newHttpClient();
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
+    
     /**
      * @param args the command line arguments
      */
@@ -479,7 +431,7 @@ public class JMusicBot extends ListenerAdapter
 if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").exists() && !new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").exists()) {
     				try {
     					InputStream in;
-						in = new URL("http://w00tguy.ddns.net/sound/csound/" + message[0].toLowerCase() + ".wav").openStream();
+						in = new URL("http://w00tguy.ddns.net/sound/csound/" + message[0].toLowerCase().replace("?", "").replace(".", "") + ".wav").openStream();
 						Files.copy(in, Paths.get("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav"), StandardCopyOption.REPLACE_EXISTING);
 						ddone = true;
     				} catch (IOException e) {
@@ -490,7 +442,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
 					message[0] = message[0].substring(2);
 				}
 				else {
-					//new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").createNewFile();
+					new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").createNewFile();
 					ddone = true;
 				}
     					 
@@ -680,102 +632,5 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
     		//sendporn();
     	//}
    // }
-   private String getLang(String emojiCode) {
-        for (Map.Entry<String, String> entry : TARGET_LANGUAGES.entrySet()) {
-            if (emojiCode.equals(entry.getValue())) {
-                return entry.getKey();
-            }
-            System.out.println("NOT A MATCH\nEMOJI CODE:" + emojiCode + "\nVAL:" + entry.getValue() + "\n");
-        }
-        return null;
-    }
-
-    private CompletableFuture<String> translateMessage(String msg, String targetLang) {
-        try {
-            String encodedMsg = URLEncoder.encode(msg, StandardCharsets.UTF_8);
-            String url = String.format(
-                    "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=%s&dt=t&q=%s",
-                    targetLang, encodedMsg);
-
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .GET()
-                    .build();
-
-            return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                    .thenApply(HttpResponse::body)
-                    .thenApply(body -> {
-                        try {
-                            // The response is a nested array, parse accordingly
-                            // Example: [[["translated text","original text",null,null,...]],null,"en",...]
-                            var data = objectMapper.readValue(body, new TypeReference<java.util.List<?>>(){});
-                            //Object[] firstArray = (Object[]) ((java.util.List<?>) data[0]).get(0);
-                            //return firstArray[0].toString();
-							String teststring = data.get(0).toString();
-							teststring = teststring.substring(2, teststring.indexOf(msg)-1);
-							return teststring;
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            return null;
-                        }
-                    });
-        } catch (Exception e) {
-            CompletableFuture<String> failed = new CompletableFuture<>();
-            failed.completeExceptionally(e);
-            return failed;
-        }
-    }
-
-   @Override
-    public void onMessageReactionAdd(MessageReactionAddEvent event) {
-
-        // Fetch reaction if partial (JDA handles caching differently, but we can ensure message is loaded)
-        if (event.getGuild() != jda.getTextChannelById(1472961166501478413L).getGuild()) {
-            return; // Only handle guild messages
-        }
-
-        String emojiCode = event.getReaction().getEmoji().getAsReactionCode();
-
-        String targetLanguage = getLang(emojiCode);
-        if (targetLanguage == null) {
-            return;
-        }
-
-        translateMessage(event.retrieveMessage().complete().getContentRaw(), targetLanguage).thenAccept(translation -> {
-            if (translation == null) {
-                return;
-            }
-            System.out.println("TARGET_LANGUAGE: " + targetLanguage);
-            System.out.println("TRANSLATION: " + translation);
-
-            try {
-                // Translate "Original" and "Translation" labels
-                CompletableFuture<String> originalLabelFuture = translateMessage("Original", targetLanguage);
-                CompletableFuture<String> translationLabelFuture = translateMessage("Translation", targetLanguage);
-
-                CompletableFuture.allOf(originalLabelFuture, translationLabelFuture).thenRun(() -> {
-                    String originalLabel = originalLabelFuture.join();
-                    String translationLabel = translationLabelFuture.join();
-
-                    EmbedBuilder embed = new EmbedBuilder()
-                            .setColor(Color.GREEN)
-                            .addField("Original/" + originalLabel, event.retrieveMessage().complete().getContentRaw(), false)
-                            .addField("Translation/" + translationLabel, translation, false);
-
-                    event.getChannel().sendMessageEmbeds(embed.build()).queue();
-                    event.getReaction().removeReaction(event.getUser()).queue();
-                }).exceptionally(ex -> {
-                    System.err.println("Error translating labels: " + ex);
-                    return null;
-                });
-            } catch (Exception e) {
-                System.err.println("Error On translation: " + e);
-            }
-        }).exceptionally(ex -> {
-            System.err.println("Error On translation: " + ex);
-            return null;
-        });
-    }
 
 }
