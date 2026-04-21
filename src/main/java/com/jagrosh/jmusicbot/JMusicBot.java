@@ -715,7 +715,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
                             //return (String) firstArray[0];
 							//return (String) ((((java.util.List<?>) data[0]).get(0)).get(0));
 							System.out.println(testthing);
-							return data[0];
+							return (String) data[0];
                         } catch (Exception e) {
                             e.printStackTrace();
                             return null;
