@@ -708,8 +708,8 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
                         try {
                             // The response is a nested array, parse accordingly
                             // Example: [[["translated text","original text",null,null,...]],null,"en",...]
-							String[] data = objectMapper.readValue(body, new TypeReference<Object[]>(){});
-							String testthing = data[0];
+							Object[] data = objectMapper.readValue(body, new TypeReference<Object[]>(){});
+							String testthing = data[0].toString();
 
                             //Object[] firstArray = ((java.util.List<?>) data[0]).get(0);
                             //return (String) firstArray[0];
