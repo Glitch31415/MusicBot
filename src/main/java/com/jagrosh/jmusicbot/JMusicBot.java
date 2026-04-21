@@ -722,7 +722,6 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
     public void onMessageReactionAdd(MessageReactionAddEvent event) {
         MessageReaction reaction = event.getReaction();
         String message = event.getMessage();
-        MessageChannel channel = event.getChannel();
 
         // Fetch reaction if partial (JDA handles caching differently, but we can ensure message is loaded)
         if (!message.isFromGuild()) {
@@ -757,7 +756,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
                             .addField("Original/" + originalLabel, message.getContentRaw(), false)
                             .addField("Translation/" + translationLabel, translation, false);
 
-                    channel.sendMessageEmbeds(embed.build()).queue();
+                    event.getChannel().sendMessageEmbeds(embed.build()).queue();
                     reaction.removeReaction(event.getUser()).queue();
                 }).exceptionally(ex -> {
                     System.err.println("Error translating labels: " + ex);
