@@ -437,7 +437,7 @@ public class JMusicBot extends ListenerAdapter
 if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").exists() && !new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").exists()) {
     				try {
     					InputStream in;
-						in = new URL("http://w00tguy.ddns.net/sound/csound/" + message[0].toLowerCase().replace("?", "").replace(".", "") + ".wav").openStream();
+						in = new URL("http://w00tguy.ddns.net/sound/csound/" + message[0].toLowerCase() + ".wav").openStream();
 						Files.copy(in, Paths.get("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav"), StandardCopyOption.REPLACE_EXISTING);
 						ddone = true;
     				} catch (IOException e) {
@@ -448,7 +448,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
 					message[0] = message[0].substring(2);
 				}
 				else {
-					new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").createNewFile();
+					//new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".none").createNewFile();
 					ddone = true;
 				}
     					 
