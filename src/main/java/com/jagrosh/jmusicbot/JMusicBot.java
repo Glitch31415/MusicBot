@@ -70,7 +70,6 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.MessageReaction;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -722,7 +721,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
    @Override
     public void onMessageReactionAdd(MessageReactionAddEvent event) {
         MessageReaction reaction = event.getReaction();
-        Message message = event.getMessage();
+        String message = event.getMessage();
         MessageChannel channel = event.getChannel();
 
         // Fetch reaction if partial (JDA handles caching differently, but we can ensure message is loaded)
