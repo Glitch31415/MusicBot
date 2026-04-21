@@ -722,7 +722,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
     public void onMessageReactionAdd(MessageReactionAddEvent event) {
 
         // Fetch reaction if partial (JDA handles caching differently, but we can ensure message is loaded)
-        if (!event.getMessage().isFromGuild()) {
+        if (!event.retrieveMessage().isFromGuild()) {
             return; // Only handle guild messages
         }
 
@@ -733,7 +733,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
             return;
         }
 
-        translateMessage(event.getMessage().getContentRaw(), targetLanguage).thenAccept(translation -> {
+        translateMessage(event.retrieveMessage().getContentRaw(), targetLanguage).thenAccept(translation -> {
             if (translation == null) {
                 return;
             }
@@ -751,7 +751,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
 
                     EmbedBuilder embed = new EmbedBuilder()
                             .setColor(Color.GREEN)
-                            .addField("Original/" + originalLabel, event.getMessage().getContentRaw(), false)
+                            .addField("Original/" + originalLabel, event.retrieveMessage().getContentRaw(), false)
                             .addField("Translation/" + translationLabel, translation, false);
 
                     event.getChannel().sendMessageEmbeds(embed.build()).queue();
