@@ -135,7 +135,7 @@ public class JMusicBot extends ListenerAdapter
     //);
 	private static final Map<String, String> TARGET_LANGUAGES = Map.of(
             "en", "🇺🇸",
-            "ru", "🇷🇺️",
+            "ru", ":flag_ru:",
             "es", "🇦🇷"
     );
 
@@ -685,7 +685,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
             if (emojiCode.equals(entry.getValue())) {
                 return entry.getKey();
             }
-            System.out.println("NOT A MATCH\nEMOJI CODE:" + emojiCode + "\nVAL: " + entry.getValue() + "\n");
+            System.out.println("NOT A MATCH\nEMOJI CODE:" + emojiCode + "\nVAL:" + entry.getValue() + "\n");
         }
         return null;
     }
