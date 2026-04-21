@@ -722,7 +722,7 @@ if (!new File("/home/glitch/hlcoop-sfx/" + message[0].toLowerCase() + ".wav").ex
     public void onMessageReactionAdd(MessageReactionAddEvent event) {
 
         // Fetch reaction if partial (JDA handles caching differently, but we can ensure message is loaded)
-        if (!event.getGuild() == jda.getTextChannelById(1472961860805333024L).getGuild()) {
+        if (event.getGuild() != jda.getTextChannelById(1472961860805333024L).getGuild()) {
             return; // Only handle guild messages
         }
 
