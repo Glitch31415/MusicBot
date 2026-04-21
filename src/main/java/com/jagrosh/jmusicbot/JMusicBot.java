@@ -114,7 +114,7 @@ public class JMusicBot extends ListenerAdapter
         startBot();
     }
     
-    private static void startBot()
+    private static void startBot() throws IOException
     {
 		Process translateprocess = Runtime.getRuntime().exec("node ./translate.js");
 		
