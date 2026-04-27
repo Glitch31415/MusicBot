@@ -122,7 +122,7 @@ public class JMusicBot extends ListenerAdapter
 			System.out.println(e.toString());
 		}
 		try {
-		Process trackerprocess = Runtime.getRuntime().exec("NODE_TLS_REJECT_UNAUTHORIZED=0 node hlcoop-tracker.js");
+		Process trackerprocess = Runtime.getRuntime().exec("node hlcoop-tracker.js");
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
