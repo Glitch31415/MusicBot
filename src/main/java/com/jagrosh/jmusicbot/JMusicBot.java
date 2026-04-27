@@ -121,6 +121,11 @@ public class JMusicBot extends ListenerAdapter
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
+		try {
+		Process trackerprocess = Runtime.getRuntime().exec("NODE_TLS_REJECT_UNAUTHORIZED=0 node hlcoop-tracker.js");
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 		
         // create user interaction handler for startup
         UserInteraction userInteraction = new Prompt("JMusicBot");
